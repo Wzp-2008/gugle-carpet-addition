@@ -29,10 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @SuppressWarnings("unused")
 public class GcaExtension implements CarpetExtension, ModInitializer {
@@ -41,7 +38,7 @@ public class GcaExtension implements CarpetExtension, ModInitializer {
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static @NotNull ResourceLocation id(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+        return Objects.requireNonNull(ResourceLocation.tryBuild(MOD_ID, path));
     }
 
     public static final HashMap<Player, Map.Entry<FakePlayerInventoryContainer, FakePlayerEnderChestContainer>> fakePlayerInventoryContainerMap = new HashMap<>();
